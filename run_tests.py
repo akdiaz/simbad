@@ -1,9 +1,9 @@
 #! /usr/bin/env python
 
-from __future__ import division
-from __future__ import print_function
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
+
+
 
 import unittest
 
@@ -87,7 +87,7 @@ class TestQueryReference(unittest.TestCase):
             }
 
         print()
-        for bibcode, expected in references.iteritems():
+        for bibcode, expected in references.items():
             output = query_reference(bibcode)
             print('{} -> {}'.format(bibcode, output))
             self.assertEqual(output, expected)

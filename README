@@ -1,0 +1,22 @@
+Installation:
+
+$ pip install astropy astroquery
+$ ./run_tests.py
+
+---------------------------------------------------------------
+
+Sample usage:
+
+$ simbad_batch.py sample_input_file.txt
+
+This generates two different output files, one for each object:
+
+$ ls
+J053524.550-050659.000.txt
+J053527.634-050934.374.txt
+
+---------------------------------------------------------------
+
+Documentation [In Spanish]:
+
+https://docs.google.com/document/d/1GA3ZV6_DomkjaBFU3dsyVr3GHaVZdQcUXEBpbM07XBA/edit?usp=sharing

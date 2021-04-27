@@ -1,9 +1,4 @@
-#! /usr/bin/env python2
-
-
-
-
-
+#! /usr/bin/env python3
 
 from astropy import coordinates
 from astroquery.simbad import Simbad
@@ -76,17 +71,18 @@ def query_reference(bibcode):
 
     result_table = Simbad.query_bibcode(bibcode)
     data = str(result_table[0]).strip().splitlines()
+    print(data)
 
     # Ugly hack to accommodate Ana Karla's wishes.
     # Something like [
-    #   'References',
-    #   '---------------------------- ...',
-    #   '1999AJ....118..983R = DOI 10.1086/300958  --  ?',
-    #   'Astron. J., 118, 983-989 (1999)',
-    #   'REIPURTH B., RODRIGUEZ L.F. and CHINI R.',
-    #   'VLA detection of protostars in OMC-2/3.',
-    #   'Flags: Table 1: <[RRC99] VLA NN> (Nos 1-14).',
-    #   'Files: (abstract)']
+    # 'References                                                                                                           ',
+    # '---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------',
+    # '1999AJ....118..983R = DOI 10.1086/300958',
+    # 'Astron. J., 118, 983-989 (1999/August-0)',
+    # 'REIPURTH B., RODRIGUEZ L.F. and CHINI R.',
+    # 'VLA detection of protostars in OMC-2/3.',
+    # 'Flags: Table 1: <[RRC99] VLA NN> (Nos 1-14).',
+    # 'Files: (abstract)']
 
     # Extract the surname of the first author
     authors_line = data[4]
@@ -94,8 +90,8 @@ def query_reference(bibcode):
     # we want to transform into 'Morales-Calderon'.
     name = authors_line.split()[0]
     first_author = '-'.join(x.capitalize() for x in name.split('-'))
-    year_line = data[3]
-    year = re.findall('\((\d{4})\)', year_line)[0]
+    year_line = data[2]
+    year = re.findall('(\d{4})', year_line)[0]
     year = year[-2:]  # From '1999' to just '99'
     return first_author + year
 

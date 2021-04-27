@@ -71,8 +71,6 @@ def query_reference(bibcode):
 
     result_table = Simbad.query_bibcode(bibcode)
     data = str(result_table[0]).strip().splitlines()
-    print(data)
-
     # Ugly hack to accommodate Ana Karla's wishes.
     # Something like [
     # 'References                                                                                                           ',
@@ -123,8 +121,7 @@ def get_object_types(identifier):
     references = table.find_all('tt', title=True)
 
     for r in references:
-        type_object = r.previous_sibling.previous_sibling
-        tt = type_object.contents[1]
+        tt = r.contents[1]
         type_ = tt.contents[0].strip()
         title = ", ".join(r.get('title').split(","))
         if "Ref" in title:
